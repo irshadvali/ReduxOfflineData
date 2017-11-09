@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, NetInfo, ActivityIndicator, ListView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, NetInfo, ActivityIndicator, ListView, TouchableOpacity, Alert } from 'react-native';
 import { List, ListItem, Icon } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { StackNavigator, NavigationActions } from "react-navigation";
@@ -59,7 +59,9 @@ class UserList extends Component {
     var { navigate } = this.props.navigation;
     navigate("AddUser", {});
   };
-
+  alertItemName = (name) => {
+    Alert.alert(name)
+}
   render() {
     if (this.props.User != undefined && this.props.User.length != 0) {
       return (
@@ -78,6 +80,7 @@ class UserList extends Component {
                 backgroundColor: "#dddddd",
                 borderRadius: 3
               }}
+               onPress={() => this.alertItemName(rowData.id)}
                 activeOpacity={0.7}
                 throttleTime={2000}>
                 <View>
